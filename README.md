@@ -15,3 +15,4 @@ steps: <br>
 4- use pop & push functions to move the disks from the first rod to 
 th third rod <br>
 5- repeat the steps for 5 disks & 7 disks 
+![img.png](img.png)
