@@ -9,7 +9,7 @@ The Tower of Hanoi is a mathematical game or puzzle consisting of three rods and
 With 3 disks, the puzzle can be solved in 7 moves. The minimal number of moves required to solve a Tower of Hanoi puzzle is 2n − 1, where n is the number of disks.<br>
 
 steps: <br>
-1- fork this repository <br>
+1- create a new branch with your name <br>
 2- in your code create stack objects represents the three rods <br>
 3- push 3 disk objects in the first rod <br>
 4- use pop & push functions to move the disks from the first rod to 
