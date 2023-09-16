@@ -84,4 +84,8 @@ func main() {
 	}
 
 	hanoi(numDisks, source, helper, target)
+	fmt.Printf("FINAL TOWER ON ROD 3\n")
+	for i := 0; i < numDisks; i++ {
+		fmt.Println(target.Pop())
+	}
 }
