@@ -42,6 +42,6 @@ func towerOfHanoi(n int) {
 }
 
 func main() {
-	n := 5 // number of disks
+	n := 7 // number of disks
 	towerOfHanoi(n)
 }
