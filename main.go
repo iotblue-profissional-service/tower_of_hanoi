@@ -7,11 +7,25 @@ import (
 var rod = []byte{'1', '2', '3'}
 var stacks = make([][]int, 3)
 
+func Push(stack *[]int, item int) {
+	*stack = append(*stack, item)
+}
+
+func Pop(stack *[]int) int {
+	if len(*stack) > 0 {
+		index := len(*stack) - 1
+		item := (*stack)[index]
+		*stack = (*stack)[:index]
+		return item
+	}
+	return -1 // Return -1 for an empty stack
+}
+
 func moveDisk(a, b int) {
 	if len(stacks[b]) == 0 || (len(stacks[a]) > 0 && stacks[a][len(stacks[a])-1] < stacks[b][len(stacks[b])-1]) {
-		fmt.Printf("Move disk %d from rod %c to rod %c\n", stacks[a][len(stacks[a])-1], rod[a], rod[b])
-		stacks[b] = append(stacks[b], stacks[a][len(stacks[a])-1])
-		stacks[a] = stacks[a][:len(stacks[a])-1]
+		disk := Pop(&stacks[a])
+		fmt.Printf("Move disk %d from rod %c to rod %c\n", disk, rod[a], rod[b])
+		Push(&stacks[b], disk)
 	} else {
 		moveDisk(b, a)
 	}
@@ -22,7 +36,7 @@ func towerOfHanoi(n int) {
 
 	src, aux, dest := 0, 1, 2
 	for i := n; i > 0; i-- {
-		stacks[src] = append(stacks[src], i)
+		Push(&stacks[src], i)
 	}
 
 	totalMoves := (1 << n) - 1
@@ -42,6 +56,6 @@ func towerOfHanoi(n int) {
 }
 
 func main() {
-	n := 7 // number of disks
+	n := 3 // number of disks
 	towerOfHanoi(n)
 }
