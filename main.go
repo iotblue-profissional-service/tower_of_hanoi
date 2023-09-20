@@ -62,7 +62,10 @@ func main() {
 	s.push(Disk{size: 2})
 	s.push(Disk{size: 1})
 
-	tower_of_hanoi(3, s, a, e)
+	var x int
+	fmt.Println("enter the number of disks: ")
+	fmt.Scan(&x)
+	tower_of_hanoi(x, s, a, e)
 
 	//s.Print()
 	fmt.Println("---------------------------")
