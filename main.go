@@ -11,8 +11,8 @@ type Stack struct {
 }
 
 // stack basic functions
-func (s *Stack) push(data Disk) {
-	s.items = append(s.items, data)
+func (s *Stack) push(size Disk) {
+	s.items = append(s.items, size)
 }
 func (s *Stack) IsEmpty() bool {
 	if len(s.items) == 0 {
@@ -34,22 +34,22 @@ func (s *Stack) top() Disk {
 }
 func (s *Stack) Print() {
 	for _, item := range s.items {
-		fmt.Print(item, " ")
+		fmt.Println(item)
 	}
 	fmt.Println()
 }
 
 // the problem
-func tower_of_hanoi(n int, s Stack, a Stack, e Stack) {
+func tower_of_hanoi(n int, s, a, e *Stack) {
 	// Todo: add print statements to be able to see code progress
 	if n == 1 {
 		e.push(s.top())
 		s.pop()
 	} else {
-		tower_of_hanoi(n-1, s, a, e)
+		tower_of_hanoi(n-1, s, e, a)
 		e.push(s.top())
 		s.pop()
-		tower_of_hanoi(n-1, a, e, s)
+		tower_of_hanoi(n-1, a, s, e)
 	}
 }
 
@@ -59,16 +59,25 @@ func main() {
 	a := Stack{}
 	e := Stack{}
 
-	s.push(Disk{size: 3})
-	s.push(Disk{size: 2})
-	s.push(Disk{size: 1})
-
 	var x int
-	fmt.Println("enter the number of disks: ")
+	fmt.Println("Enter the number of disks:")
 	fmt.Scan(&x)
-	tower_of_hanoi(x, s, a, e)
 
-	//s.Print()
-	fmt.Println("---------------------------")
+	if x == 3 || x == 5 || x == 7 {
+		for i := x; i > 0; i-- {
+			s.push(Disk{size: i})
+		}
+	} else {
+		fmt.Println("wrong value, enter either 3, 5 or 7: ")
+		fmt.Scan(&x)
+		for i := x; i > 0; i-- {
+			s.push(Disk{size: i})
+		}
+	}
+	tower_of_hanoi(x, &s, &a, &e)
+
+	fmt.Println("Source:")
+	s.Print()
+	fmt.Println("Destination:")
 	e.Print()
 }
