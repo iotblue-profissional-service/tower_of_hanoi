@@ -41,6 +41,7 @@ func (s *Stack) Print() {
 
 // the problem
 func tower_of_hanoi(n int, s Stack, a Stack, e Stack) {
+	// Todo: add print statements to be able to see code progress
 	if n == 1 {
 		e.push(s.top())
 		s.pop()
